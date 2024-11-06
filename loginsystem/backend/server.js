@@ -1,9 +1,12 @@
 // backend/server.js
 const express = require("express");
 const app = express();
+const cors = require("cors");
 require("dotenv").config();
 
 const { AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET } = process.env;
+
+app.use(cors());
 
 // Define the route at the top level
 app.get("/management-api-token", async (req, res) => {
@@ -30,6 +33,9 @@ app.get("/management-api-token", async (req, res) => {
     res.status(500).send("Error fetching token");
   }
 });
+
+
+
 
 const PORT = 3001;
 app.listen(PORT, () => {
